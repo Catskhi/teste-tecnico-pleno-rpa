@@ -141,7 +141,7 @@ Commite o `flake.lock` no seu repositório.
 
 1. **Prazo:** 1 semana (quanto antes, melhor)
 2. **Entrega:** Fork deste repositório
-3. **Dúvidas:** Envie por email - ti@bpcreditos.com.br | gabrielpelizzaro@gmail.com
+3. **Dúvidas:** Envie por email - ti@bpcreditos.com.br | gabrielpelizzaro@gmail.com ou entre em contato no whatsapp do Gabriel
 
 ---
 
