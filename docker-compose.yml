@@ -8,15 +8,7 @@ services:
     volumes:
       - ./data:/app/data
     depends_on:
-      - hockey
       - oscar
-
-  hockey:
-    build:
-      context: .
-      dockerfile: docker/hockey.dockerfile
-    volumes:
-      - ./data:/app/data
 
   oscar:
     build:
