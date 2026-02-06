@@ -1,7 +1,6 @@
 import json
 
 import httpx
-import pytest
 import respx
 from fastapi.testclient import TestClient
 
@@ -35,9 +34,7 @@ class TestCrawlOscarEndpoint:
 
     @respx.mock
     def test_returns_502_on_oscar_error(self):
-        respx.post(f"{OSCAR_SERVICE_URL}/scrape").mock(
-            return_value=httpx.Response(500)
-        )
+        respx.post(f"{OSCAR_SERVICE_URL}/scrape").mock(return_value=httpx.Response(500))
 
         response = client.post("/crawl/oscar")
         assert response.status_code == 502

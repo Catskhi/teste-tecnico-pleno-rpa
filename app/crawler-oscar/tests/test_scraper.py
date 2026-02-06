@@ -1,7 +1,5 @@
 import json
-from datetime import datetime, timezone
-from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import httpx
 import pytest
@@ -9,7 +7,6 @@ import respx
 
 from models import CrawlResult, Film
 from scraper import (
-    DATA_DIR,
     TARGET_URL,
     YEARS,
     _save_result,
@@ -149,13 +146,13 @@ class TestCrawlOscar:
     async def test_partial_failure(self, tmp_data_dir):
         for year in YEARS:
             if year == 2010:
-                respx.get(
-                    TARGET_URL, params={"ajax": "true", "year": str(year)}
-                ).mock(return_value=httpx.Response(500))
+                respx.get(TARGET_URL, params={"ajax": "true", "year": str(year)}).mock(
+                    return_value=httpx.Response(500)
+                )
             else:
-                respx.get(
-                    TARGET_URL, params={"ajax": "true", "year": str(year)}
-                ).mock(return_value=httpx.Response(200, json=SAMPLE_FILMS_JSON))
+                respx.get(TARGET_URL, params={"ajax": "true", "year": str(year)}).mock(
+                    return_value=httpx.Response(200, json=SAMPLE_FILMS_JSON)
+                )
 
         with patch("scraper.fetch_year_selenium", side_effect=Exception("no browser")):
             result = await crawl_oscar("partial-job")
