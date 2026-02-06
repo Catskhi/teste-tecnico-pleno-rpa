@@ -7,6 +7,9 @@ services:
       - "8000:8000"
     volumes:
       - ./data:/app/data
+    environment:
+      - OSCAR_SERVICE_URL=http://oscar:8000
+      - DATA_DIR=/app/data
     depends_on:
       - oscar
 
@@ -16,3 +19,5 @@ services:
       dockerfile: docker/oscar.dockerfile
     volumes:
       - ./data:/app/data
+    environment:
+      - DATA_DIR=/app/data
