@@ -1,0 +1,15 @@
+.git
+.gitignore
+.direnv
+.venv
+__pycache__
+*.py[cod]
+data/*.json
+.vscode
+.idea
+.DS_Store
+*.md
+flake.nix
+flake.lock
+.envrc
+.python-version
