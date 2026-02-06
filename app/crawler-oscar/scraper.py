@@ -18,7 +18,9 @@ from models import CrawlResult, Film
 logger = logging.getLogger(__name__)
 
 TARGET_URL = "https://www.scrapethissite.com/pages/ajax-javascript/"
-YEARS = range(2010, 2016)
+YEAR_START = int(os.environ.get("YEAR_START", 2010))
+YEAR_END = int(os.environ.get("YEAR_END", 2016))
+YEARS = range(YEAR_START, YEAR_END)
 DATA_DIR = Path(os.environ.get("DATA_DIR", "/app/data"))
 HTTP_TIMEOUT = 30
 MAX_RETRIES = 3
