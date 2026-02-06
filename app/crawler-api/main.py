@@ -42,7 +42,10 @@ async def crawl_oscar():
 
 @app.get("/results/{job_id}", response_model=CrawlResult)
 async def get_results(job_id: str):
-    path = DATA_DIR / f"{job_id}.json"
+    path = (DATA_DIR / f"{job_id}.json").resolve()
+
+    if not path.is_relative_to(DATA_DIR.resolve()):
+        raise HTTPException(status_code=400, detail="Invalid job_id")
 
     if not path.exists():
         raise HTTPException(status_code=404, detail="Job not found")

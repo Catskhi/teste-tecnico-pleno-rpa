@@ -47,6 +47,12 @@ class TestGetResultsEndpoint:
         response = client.get("/results/nonexistent")
         assert response.status_code == 404
 
+    def test_rejects_path_traversal(self, tmp_path, monkeypatch):
+        monkeypatch.setattr("main.DATA_DIR", tmp_path)
+
+        response = client.get("/results/..")
+        assert response.status_code in (400, 404)
+
     def test_returns_result_from_json(self, tmp_path, monkeypatch):
         monkeypatch.setattr("main.DATA_DIR", tmp_path)
 
