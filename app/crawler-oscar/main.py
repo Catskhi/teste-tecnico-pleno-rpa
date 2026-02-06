@@ -1,5 +1,4 @@
 import logging
-import logging
 from fastapi import BackgroundTasks, FastAPI
 from pydantic import BaseModel
 from scraper import crawl_oscar
