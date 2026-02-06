@@ -1,4 +1,8 @@
+import logging
+
 from fastapi import BackgroundTasks, FastAPI
+
+logging.basicConfig(level=logging.INFO)
 from pydantic import BaseModel
 
 from scraper import crawl_oscar
