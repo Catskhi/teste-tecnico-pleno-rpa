@@ -3,14 +3,12 @@ import logging
 import os
 import uuid
 from pathlib import Path
-
-logging.basicConfig(level=logging.INFO)
-
 import httpx
 from fastapi import FastAPI, HTTPException
 
 from models import CrawlResponse, CrawlResult
 
+logging.basicConfig(level=logging.INFO)
 app = FastAPI(title="Crawler API")
 
 OSCAR_SERVICE_URL = os.environ.get("OSCAR_SERVICE_URL", "http://oscar:8000")
