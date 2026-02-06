@@ -1,1 +1,16 @@
+# Nix / direnv
 .direnv
+result
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
