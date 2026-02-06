@@ -23,6 +23,7 @@ DATA_DIR = Path(os.environ.get("DATA_DIR", "/app/data"))
 HTTP_TIMEOUT = 30
 MAX_RETRIES = 3
 
+
 async def fetch_year_http(client: httpx.AsyncClient, year: int) -> list[Film]:
     for attempt in range(1, MAX_RETRIES + 1):
         try:
@@ -45,6 +46,7 @@ async def fetch_year_http(client: httpx.AsyncClient, year: int) -> list[Film]:
                 raise
             await asyncio.sleep(0.5 * attempt)
     return []
+
 
 def _make_driver() -> webdriver.Chrome:
     options = Options()
@@ -78,14 +80,11 @@ def fetch_year_selenium(year: int) -> list[Film]:
         driver.quit()
 
 
-
 async def fetch_year(client: httpx.AsyncClient, year: int) -> list[Film]:
     try:
         return await fetch_year_http(client, year)
     except Exception as exc:
-        logger.warning(
-            "HTTP failed for %d, falling back to Selenium: %s", year, exc
-        )
+        logger.warning("HTTP failed for %d, falling back to Selenium: %s", year, exc)
         return await asyncio.to_thread(fetch_year_selenium, year)
 
 
