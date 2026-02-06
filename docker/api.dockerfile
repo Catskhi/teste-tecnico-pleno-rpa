@@ -5,14 +5,11 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-# TODO: Layer de dependências
-# COPY pyproject.toml uv.lock ./
-# RUN pip install uv && uv sync --frozen
+COPY app/crawler-api/pyproject.toml app/crawler-api/uv.lock ./
+RUN pip install uv && uv sync --frozen
 
-# TODO: Layer do app
-# COPY app/ ./app/
+COPY app/crawler-api/ ./
 
 EXPOSE 8000
 
-CMD ["python", "app/crawler-api/main.py"]
-
+CMD ["uv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
