@@ -3,4 +3,9 @@ name = "crawler-api"
 version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "fastapi>=0.115.0",
+    "httpx>=0.28.1",
+    "pydantic>=2.12.5",
+    "uvicorn>=0.34.0",
+]
